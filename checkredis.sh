@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Dynamically generate the list of sites based on directories in /home/virtual/
-SITES=($(ls -d /home/virtual/site* | awk -F'/' '{print $NF}'))
+# Get site IDs using cpcmd admin:get-domains and transform them to the format "site<ID>"
+SITES=($(cpcmd admin:get-domains | awk -F':' '/.+/ {print "site"$1}'))
 
 for site in "${SITES[@]}"; do
     # Check if Redis exists for the site
