@@ -1,0 +1,3 @@
+cd /var/www/html
+getfacl domain
+setfacl -R -m g:mainuser:rwx domain
